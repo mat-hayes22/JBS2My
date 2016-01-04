@@ -32,7 +32,7 @@ public class SellOneItemTest {
         Display display = new Display();
         Sale sale = new Sale(display);
         sale.onBarcode("99999");
-        assertEquals("Product Not Found", display.getText());
+        assertEquals("Product Not Found for 99999", display.getText());
 
     }
 
@@ -48,8 +48,8 @@ public class SellOneItemTest {
                 display.setText("7.95");
             else if ("123458".equals(barcode))
                 display.setText("12.95");
-            else if ("99999".equals(barcode))
-                display.setText("Product Not Found");
+            else
+                display.setText( String.format("Product Not Found for %s", barcode));
 
         }
     }

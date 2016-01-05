@@ -20,8 +20,8 @@ public class SellOneItemTest {
     public void setup() throws Exception {
         display = new Display();
         sale = new Sale(display, new HashMap<String, String>() {{
-            put("123456", "7.95");
-            put("123458", "12.95");
+            put("123456", "$7.95");
+            put("123458", "$12.95");
         }});
     }
 
@@ -29,14 +29,14 @@ public class SellOneItemTest {
     public void productFound() throws Exception {
         setup();
         sale.onBarcode("123456");
-        assertEquals("7.95", display.getText());
+        assertEquals("$7.95", display.getText());
     }
 
     @Test
     public void anoterProductFound() throws Exception {
         setup();
         sale.onBarcode("123458");
-        assertEquals("12.95", display.getText());
+        assertEquals("$12.95", display.getText());
     }
 
     @Test
@@ -67,16 +67,31 @@ public class SellOneItemTest {
 
         public void onBarcode(String barcode) {
             if ("".equals(barcode)) {
-                display.setText("Scanning Error: Empty barcode");
+                displayErrorMessage();
                 return;
             }
 
-
             if (pricesByBarcode.containsKey(barcode))
-                display.setText(pricesByBarcode.get(barcode));
-             else
-                display.setText(String.format("Product Not Found for %s", barcode));
+                displayPrice(findBarcode(barcode));
+            else
+                displayProductNotFound(barcode);
 
+        }
+
+        private void displayPrice(String priceAsText) {
+            display.setText(priceAsText);
+        }
+
+        private String findBarcode(String barcode) {
+            return pricesByBarcode.get(barcode);
+        }
+
+        private void displayProductNotFound(String barcode) {
+            display.setText(String.format("Product Not Found for %s", barcode));
+        }
+
+        private void displayErrorMessage() {
+            display.setText("Scanning Error: Empty barcode");
         }
     }
 

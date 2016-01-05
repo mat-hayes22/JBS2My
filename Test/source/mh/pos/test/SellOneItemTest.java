@@ -73,9 +73,9 @@ public class SellOneItemTest {
                 }};
 
                 if ("123456".equals(barcode))
-                    display.setText(pricesByBarcode.get("123456"));
+                    display.setText(pricesByBarcode.get(barcode));
                 else if ("123458".equals(barcode))
-                    display.setText(pricesByBarcode.get("123458"));
+                    display.setText(pricesByBarcode.get(barcode));
                 else
                     display.setText(String.format("Product Not Found for %s", barcode));
             }

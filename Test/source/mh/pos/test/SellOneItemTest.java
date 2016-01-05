@@ -4,6 +4,10 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -59,16 +63,22 @@ public class SellOneItemTest {
         }
 
         public void onBarcode(String barcode) {
-            if ("123456".equals(barcode ))
-                display.setText("7.95");
-            else if ("123458".equals(barcode))
-                display.setText("12.95");
-            else if ("".equals(barcode)){
+            if ("".equals(barcode)){
                 display.setText("Scanning Error: Empty barcode");
             }
-            else
-                display.setText( String.format("Product Not Found for %s", barcode));
+            else {
+                final Map<String, String> pricesByBarcode = new HashMap<String, String>() {{
+                    put("123456","7.95");
+                    put("123458","12.95");
+                }};
 
+                if ("123456".equals(barcode))
+                    display.setText(pricesByBarcode.get("123456"));
+                else if ("123458".equals(barcode))
+                    display.setText(pricesByBarcode.get("123458"));
+                else
+                    display.setText(String.format("Product Not Found for %s", barcode));
+            }
         }
     }
 

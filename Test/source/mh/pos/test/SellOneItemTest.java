@@ -52,41 +52,14 @@ public class SellOneItemTest {
 
     }
 
-    private static class Sale {
-        private Catalog catalog;
-        private Display display;
-
-        public Sale(Display display, Catalog catalog) {
-            this.catalog = catalog;
-            this.display = display;
-
-        }
-
-        public void onBarcode(String barcode) {
-            if ("".equals(barcode)) {
-                display.displayErrorMessage();
-                return;
-            }
-
-            String priceAsText = catalog.findPrice(barcode);
-            if (priceAsText == null) {
-                display.displayProductNotFound(barcode);
-            } else {
-                display.displayPrice(priceAsText);
-            }
-
-        }
-
-    }
-
-    private static class Catalog {
+    public static class Catalog {
         private final Map<String, String> pricesByBarcode;
 
         private Catalog(Map<String, String> pricesByBarcode) {
             this.pricesByBarcode = pricesByBarcode;
         }
 
-        private String findPrice(String barcode) {
+        public String findPrice(String barcode) {
             return pricesByBarcode.get(barcode);
         }
     }

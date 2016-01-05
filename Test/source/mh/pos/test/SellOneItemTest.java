@@ -8,9 +8,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by mat on 04/01/2016.
- */
 public class SellOneItemTest {
 
     Display display;
@@ -80,31 +77,6 @@ public class SellOneItemTest {
 
         }
 
-    }
-
-    private static class Display {
-
-        String text;
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
-        }
-
-        public void displayPrice(String priceAsText) {
-            setText(priceAsText);
-        }
-
-        public void displayProductNotFound(String barcode) {
-            setText(String.format("Product Not Found for %s", barcode));
-        }
-
-        public void displayErrorMessage() {
-            setText("Scanning Error: Empty barcode");
-        }
     }
 
     private static class Catalog {

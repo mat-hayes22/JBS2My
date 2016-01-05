@@ -19,4 +19,8 @@ public class Display {
     public void displayErrorMessage() {
         this.text = "Scanning Error: Empty barcode";
     }
+
+    public void displayNoSaleInProgress() {
+        this.text = "No sale in progress";
+    }
 }

@@ -22,11 +22,10 @@ public class Sale {
         } else {
             display.displayPrice(priceAsText);
         }
-
     }
 
     public void onTotal() {
-        display.text = "No sale in progress";
-
+        display.displayNoSaleInProgress();
     }
+
 }

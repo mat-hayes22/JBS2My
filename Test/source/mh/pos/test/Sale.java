@@ -25,4 +25,8 @@ public class Sale {
 
     }
 
+    public void onTotal() {
+        display.text = "No sale in progress";
+
+    }
 }

@@ -1,10 +1,8 @@
 package mh.pos.test;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,9 +19,11 @@ public class SellOneItemTest {
     @Before
     public void setup() throws Exception {
         display = new Display();
-        sale = new Sale(display);
+        sale = new Sale(display, new HashMap<String, String>() {{
+            put("123456", "7.95");
+            put("123458", "12.95");
+        }});
     }
-
 
     @Test
     public void productFound() throws Exception {
@@ -59,27 +59,24 @@ public class SellOneItemTest {
         private Display display;
         private Map<String, String> pricesByBarcode;
 
-        public Sale(Display display) {
-
+        public Sale(Display display, Map<String, String> pricesByBarcode) {
+            this.pricesByBarcode = pricesByBarcode;
             this.display = display;
-            pricesByBarcode = new HashMap<String, String>() {{
-                put("123456","7.95");
-                put("123458","12.95");
-            }};
 
         }
 
         public void onBarcode(String barcode) {
-            if ("".equals(barcode)){
+            if ("".equals(barcode)) {
                 display.setText("Scanning Error: Empty barcode");
+                return;
             }
-            else {
-                if (pricesByBarcode.containsKey(barcode)) {
-                    display.setText(pricesByBarcode.get(barcode));
-                }
-                else
-                    display.setText(String.format("Product Not Found for %s", barcode));
-            }
+
+
+            if (pricesByBarcode.containsKey(barcode))
+                display.setText(pricesByBarcode.get(barcode));
+             else
+                display.setText(String.format("Product Not Found for %s", barcode));
+
         }
     }
 

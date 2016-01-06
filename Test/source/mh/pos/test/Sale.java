@@ -18,6 +18,7 @@ public class Sale {
         }
 
         priceAsText = catalog.findPrice(barcode);
+
         if (priceAsText == null) {
             display.displayProductNotFound(barcode);
         } else {
@@ -27,10 +28,12 @@ public class Sale {
 
     public void onTotal() {
 
-        if (priceAsText == null)
-            display.displayNoSaleInProgress();
-        else
+        boolean saleInProgress = (priceAsText != null);
+        if (saleInProgress) {
             display.displayPurchaseTotal(priceAsText);
+        } else {
+            display.displayNoSaleInProgress();
+        }
     }
 
 }

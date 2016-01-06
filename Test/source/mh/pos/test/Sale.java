@@ -22,8 +22,12 @@ public class Sale {
         if (scannedPrice == null) {
             display.displayProductNotFound(barcode);
         } else {
-            display.displayPrice(scannedPrice);
+            display.displayPrice(formatMonataryAmount(scannedPrice));
         }
+    }
+
+    private String formatMonataryAmount(String scannedPrice) {
+        return scannedPrice;
     }
 
     public void onTotal() {

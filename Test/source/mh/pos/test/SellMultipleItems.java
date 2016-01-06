@@ -21,8 +21,8 @@ public class SellMultipleItems {
     @Test
     public void oneItemFound() throws Exception {
 
-        Catalog catalog = new Catalog(Collections.singletonMap("123456","$6.50"),
-                                        Collections.singletonMap("123456",650));
+        Catalog catalog = new Catalog(
+                Collections.singletonMap("123456",650));
 
         Display display = new Display();
         Sale sale = new Sale(display, catalog);
@@ -35,7 +35,7 @@ public class SellMultipleItems {
 
     @Test
     public void oneItemNotFound() throws Exception {
-        Catalog catalog = new Catalog(Collections.singletonMap("123456","$6.50"), Collections.singletonMap("123456",650));
+        Catalog catalog = new Catalog(Collections.singletonMap("123456",650));
         Display display = new Display();
         Sale sale = new Sale(display, catalog);
 
@@ -49,12 +49,7 @@ public class SellMultipleItems {
     @Test
     @Ignore ("need to change to  int first..")
     public void severalItemsAllFound() throws Exception {
-        Catalog catalog = new Catalog(new HashMap<String, String>()
-                {{
-                    put("1","$8.50");
-                    put("2","$12.75");
-                    put("3","$3.30");
-                }},
+        Catalog catalog = new Catalog(
                 new HashMap<String, Integer>()
                 {{
                     put("1",850);

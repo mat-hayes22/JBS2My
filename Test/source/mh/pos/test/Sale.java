@@ -18,7 +18,7 @@ public class Sale {
             return;
         }
 
-        scannedPrice = catalog.findPrice(barcode);
+        scannedPrice = catalog.findThenFormatPrice(barcode);
         if (scannedPrice == null) {
             display.displayProductNotFound(barcode);
         } else {

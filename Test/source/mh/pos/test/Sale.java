@@ -22,8 +22,8 @@ public class Sale {
         if (priceInCents == null) {
             display.displayProductNotFound(barcode);
         } else {
-            scannedPrice = Display.format(priceInCents);;
-            display.displayPrice(scannedPrice);
+            scannedPrice = Display.format(priceInCents);
+            display.displayText(scannedPrice);
         }
     }
 

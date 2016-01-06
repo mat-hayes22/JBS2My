@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class SellOneItemTest {
+public class ScanOneItemTest {
 
     Display display;
     Sale sale;

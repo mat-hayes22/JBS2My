@@ -1,10 +1,10 @@
 package mh.pos.test;
 
 public class Sale {
-    private SellOneItemTest.Catalog catalog;
+    private ScanOneItemTest.Catalog catalog;
     private Display display;
 
-    public Sale(Display display, SellOneItemTest.Catalog catalog) {
+    public Sale(Display display, ScanOneItemTest.Catalog catalog) {
         this.catalog = catalog;
         this.display = display;
 

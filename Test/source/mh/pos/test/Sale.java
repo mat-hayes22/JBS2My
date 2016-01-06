@@ -5,6 +5,7 @@ public class Sale {
     private Display display;
     private String scannedPrice;
 
+
     public Sale(Display display, Catalog catalog) {
         this.catalog = catalog;
         this.display = display;
@@ -18,7 +19,6 @@ public class Sale {
         }
 
         scannedPrice = catalog.findPrice(barcode);
-
         if (scannedPrice == null) {
             display.displayProductNotFound(barcode);
         } else {

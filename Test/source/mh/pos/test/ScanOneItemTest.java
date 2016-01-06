@@ -18,6 +18,9 @@ public class ScanOneItemTest {
         sale = new Sale(display, new Catalog(new HashMap<String, String>() {{
             put("123456", "$7.95");
             put("123458", "$12.95");
+        }}, new HashMap<String, Integer>() {{
+            put("123456", 795);
+            put("123458", 1295);
         }}));
     }
 

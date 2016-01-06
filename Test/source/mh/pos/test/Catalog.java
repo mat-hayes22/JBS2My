@@ -12,15 +12,7 @@ public class Catalog {
         this.pricesInCentsByBarcode = pricesInCentsByBarcode;
     }
 
-    public static String format(int priceInCents) {
-        return String.format("$%,.2f" , priceInCents / 100.0d);
-    }
-
-    public String findPriceThenFormatPrice(String barcode) {
-        Integer pricesInCents = pricesInCentsByBarcode.get(barcode);
-        if (pricesInCents != null)
-            return format(pricesInCents);
-        else
-            return null;
+    public Integer findPrice(String barcode) {
+        return pricesInCentsByBarcode.get(barcode);
     }
 }

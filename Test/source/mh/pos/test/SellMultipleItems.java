@@ -21,8 +21,23 @@ public class SellMultipleItems {
         Catalog catalog = new Catalog(Collections.singletonMap("123456","$6.50"));
         Display display = new Display();
         Sale sale = new Sale(display, catalog);
+
         sale.onBarcode("123456");
         sale.onTotal();
+
         assertEquals("Total: $6.50", display.getText());
+    }
+
+    @Test
+    public void oneItemNotFound() throws Exception {
+        Catalog catalog = new Catalog(Collections.singletonMap("123456","$6.50"));
+        Display display = new Display();
+        Sale sale = new Sale(display, catalog);
+
+        sale.onBarcode("123457");
+        sale.onTotal();
+        assertEquals("No sale in progress", display.getText());
+
+
     }
 }

@@ -3,7 +3,7 @@ package mh.pos.test;
 public class Sale {
     private Catalog catalog;
     private Display display;
-    private String priceAsText;
+    private String scannedPrice;
 
     public Sale(Display display, Catalog catalog) {
         this.catalog = catalog;
@@ -17,23 +17,23 @@ public class Sale {
             return;
         }
 
-        priceAsText = catalog.findPrice(barcode);
+        scannedPrice = catalog.findPrice(barcode);
 
-        if (priceAsText == null) {
+        if (scannedPrice == null) {
             display.displayProductNotFound(barcode);
         } else {
-            display.displayPrice(priceAsText);
+            display.displayPrice(scannedPrice);
         }
     }
 
     public void onTotal() {
 
-        boolean saleInProgress = (priceAsText != null);
-        if (saleInProgress) {
-            display.displayPurchaseTotal(priceAsText);
-        } else {
+        boolean saleInProgress = (scannedPrice != null);
+        if (saleInProgress)
+            display.displayPurchaseTotal(scannedPrice);
+         else
             display.displayNoSaleInProgress();
-        }
+
     }
 
 }

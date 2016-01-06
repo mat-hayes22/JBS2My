@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -52,15 +51,4 @@ public class ScanOneItemTest {
 
     }
 
-    public static class Catalog {
-        private final Map<String, String> pricesByBarcode;
-
-        private Catalog(Map<String, String> pricesByBarcode) {
-            this.pricesByBarcode = pricesByBarcode;
-        }
-
-        public String findPrice(String barcode) {
-            return pricesByBarcode.get(barcode);
-        }
-    }
 }

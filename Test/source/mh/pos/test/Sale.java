@@ -1,10 +1,11 @@
 package mh.pos.test;
 
 public class Sale {
-    private ScanOneItemTest.Catalog catalog;
+    private Catalog catalog;
     private Display display;
+    private String priceAsText;
 
-    public Sale(Display display, ScanOneItemTest.Catalog catalog) {
+    public Sale(Display display, Catalog catalog) {
         this.catalog = catalog;
         this.display = display;
 
@@ -16,7 +17,7 @@ public class Sale {
             return;
         }
 
-        String priceAsText = catalog.findPrice(barcode);
+        priceAsText = catalog.findPrice(barcode);
         if (priceAsText == null) {
             display.displayProductNotFound(barcode);
         } else {
@@ -25,7 +26,11 @@ public class Sale {
     }
 
     public void onTotal() {
-        display.displayNoSaleInProgress();
+
+        if (priceAsText == null)
+            display.displayNoSaleInProgress();
+        else
+            display.displayPurchaseTotal(priceAsText);
     }
 
 }

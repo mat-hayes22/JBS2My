@@ -23,4 +23,8 @@ public class Display {
     public void displayNoSaleInProgress() {
         this.text = "No sale in progress";
     }
+
+    public void displayPurchaseTotal(String priceAsText) {
+        this.text = ("Total: " + priceAsText);
+    }
 }

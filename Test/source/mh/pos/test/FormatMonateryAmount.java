@@ -6,7 +6,6 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,7 +19,14 @@ public class FormatMonateryAmount {
     public static Collection<Object[]> data(){
         return Arrays.asList(new Object[][]{
                 {789, "$7.89"},
-                {520, "$5.20"}
+                {520, "$5.20"},
+                {400, "$4.00"},
+                {0, "$0.00"},
+                {2, "$0.02"},
+                {30, "$0.30"},
+                {47, "$0.47"},
+                {418996, "$4,189.96"},
+                {210832281, "$2,108,322.81"}
         });
     }
 
@@ -37,6 +43,6 @@ public class FormatMonateryAmount {
     }
 
     private static String format(int priceInCents) {
-        return String.format("$%.2f" , priceInCents / 100.0d);
+        return String.format("$%,.2f" , priceInCents / 100.0d);
     }
 }

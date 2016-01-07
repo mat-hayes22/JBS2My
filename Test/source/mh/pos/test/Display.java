@@ -28,7 +28,11 @@ public class Display {
         this.text = "No sale in progress";
     }
 
-    public void displayPurchaseTotal(String priceAsText) {
-        this.text = ("Total: " + priceAsText);
+    public void displayPurchaseTotal(Integer price) {
+        this.text = ("Total: " + format(price));
+    }
+
+    public void displayPrice(Integer priceInCents) {
+        displayText(format(priceInCents));
     }
 }

@@ -1,9 +1,12 @@
 package mh.pos.test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class Sale {
     private Catalog catalog;
     private Display display;
-    private String scannedPrice;
+    private Collection<Integer> pendingPurchaseItemPrices = new ArrayList<>();
 
 
     public Sale(Display display, Catalog catalog) {
@@ -22,20 +25,24 @@ public class Sale {
         if (priceInCents == null) {
             display.displayProductNotFound(barcode);
         } else {
-            scannedPrice = Display.format(priceInCents);
-            display.displayText(scannedPrice);
+            pendingPurchaseItemPrices.add(priceInCents);
+            display.displayPrice(priceInCents);
         }
     }
 
 
     public void onTotal() {
 
-        boolean saleInProgress = (scannedPrice != null);
+        boolean saleInProgress = (!pendingPurchaseItemPrices.isEmpty());
         if (saleInProgress)
-            display.displayPurchaseTotal(scannedPrice);
+            display.displayPurchaseTotal(pendingPurchaseTotal());
          else
             display.displayNoSaleInProgress();
 
+    }
+
+    private Integer pendingPurchaseTotal() {
+        return pendingPurchaseItemPrices.iterator().next();
     }
 
 }

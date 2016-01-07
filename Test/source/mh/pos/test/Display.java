@@ -2,37 +2,33 @@ package mh.pos.test;
 
 public class Display {
 
-    String text;
+    private String priceAsText;
 
-    public static String format(int priceInCents) {
+    public static String formatMonateryAmount(int priceInCents) {
         return String.format("$%,.2f" , priceInCents / 100.0d);
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void displayText(String priceAsText) {
-        this.text = priceAsText;
+    public String getPriceAsText() {
+        return priceAsText;
     }
 
     public void displayProductNotFound(String barcode) {
-        this.text = String.format("Product Not Found for %s", barcode);
+        this.priceAsText = String.format("Product Not Found for %s", barcode);
     }
 
     public void displayErrorMessage() {
-        this.text = "Scanning Error: Empty barcode";
+        this.priceAsText = "Scanning Error: Empty barcode";
     }
 
     public void displayNoSaleInProgress() {
-        this.text = "No sale in progress";
+        this.priceAsText = "No sale in progress";
     }
 
     public void displayPurchaseTotal(Integer price) {
-        this.text = ("Total: " + format(price));
+        this.priceAsText = ("Total: " + formatMonateryAmount(price));
     }
 
     public void displayPrice(Integer priceInCents) {
-        displayText(format(priceInCents));
+        this.priceAsText = formatMonateryAmount(priceInCents);
     }
 }

@@ -15,7 +15,7 @@ public class SellMultipleItems {
         Display display = new Display();
         Sale sale = new Sale( display, null);
         sale.onTotal();
-        assertEquals("No sale in progress", display.getText());
+        assertEquals("No sale in progress", display.getPriceAsText());
         }
 
     @Test
@@ -30,7 +30,7 @@ public class SellMultipleItems {
         sale.onBarcode("123456");
         sale.onTotal();
 
-        assertEquals("Total: $6.50", display.getText());
+        assertEquals("Total: $6.50", display.getPriceAsText());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class SellMultipleItems {
 
         sale.onBarcode("123457");
         sale.onTotal();
-        assertEquals("No sale in progress", display.getText());
+        assertEquals("No sale in progress", display.getPriceAsText());
 
 
     }
@@ -66,7 +66,7 @@ public class SellMultipleItems {
         sale.onBarcode("3");
         sale.onTotal();
 
-        assertEquals("Total: $24.55", display.getText());
+        assertEquals("Total: $24.55", display.getPriceAsText());
 
     }
 }

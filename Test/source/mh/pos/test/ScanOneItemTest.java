@@ -25,21 +25,21 @@ public class ScanOneItemTest {
     public void productFound() throws Exception {
         setup();
         sale.onBarcode("123456");
-        assertEquals("$7.95", display.getText());
+        assertEquals("$7.95", display.getPriceAsText());
     }
 
     @Test
     public void anotherProductFound() throws Exception {
         setup();
         sale.onBarcode("123458");
-        assertEquals("$12.95", display.getText());
+        assertEquals("$12.95", display.getPriceAsText());
     }
 
     @Test
     public void productNotFound() throws Exception {
         setup();
         sale.onBarcode("99999");
-        assertEquals("Product Not Found for 99999", display.getText());
+        assertEquals("Product Not Found for 99999", display.getPriceAsText());
 
     }
 
@@ -47,7 +47,7 @@ public class ScanOneItemTest {
     public void emptyBarCode() throws Exception {
         setup();
         sale.onBarcode("");
-        assertEquals("Scanning Error: Empty barcode", display.getText());
+        assertEquals("Scanning Error: Empty barcode", display.getPriceAsText());
 
     }
 
